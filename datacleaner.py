@@ -6,6 +6,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
 
 
+
 class DataCleaner:
 
     def __init__(self):
@@ -25,9 +26,11 @@ class DataCleaner:
         col = [i for i in range(self.X.shape[1]) if i not in [4, 5, 6]]
         imputer.fit(self.X.iloc[:, col])
         self.X.iloc[:, col] = imputer.transform(self.X.iloc[:, col])
-        print(self.X.isna().sum())
+        print("Ima li još NaN vrijednosti:", self.X.isna().sum().sum())
 
     def encod_data(self,*columns):
+        print("Kolone sa NaN vrijednostima:")
+        print(self.X.columns[self.X.isna().any()])
         ct = ColumnTransformer(transformers=[("encode", OneHotEncoder(), list(columns))], remainder="passthrough")
-        self.X = np.array(ct.fit_transform(self.X))
+        self.X = ct.fit_transform(self.X)
         return self.X

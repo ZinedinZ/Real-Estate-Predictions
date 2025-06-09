@@ -1,9 +1,10 @@
 from datacleaner import DataCleaner
+from Datatrainer import Datatrainer
 
 dc = DataCleaner()
-print(dc.X)
-print(dc.encod_data("street", "city", "state"))
-
+dc.clean_data()
+dt = Datatrainer()
+dt.trainer()
 
 
 
