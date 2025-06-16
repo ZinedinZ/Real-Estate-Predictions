@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
+<<<<<<< HEAD
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
+=======
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.venv" />
+    </content>
+    <orderEntry type="jdk" jdkName="Python 3.13 (RealEstate_Prediction)" jdkType="Python SDK" />
+>>>>>>> fd0ff49d7f06f9d29479bf5507cf8de96b6fc70c
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

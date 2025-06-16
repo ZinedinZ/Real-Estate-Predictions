@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.11" project-jdk-type="Python SDK" />
+=======
+  <component name="Black">
+    <option name="sdkName" value="Python 3.13 (RealEstate_Prediction)" />
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.13 (RealEstate_Prediction)" project-jdk-type="Python SDK" />
+>>>>>>> fd0ff49d7f06f9d29479bf5507cf8de96b6fc70c
 </project>
