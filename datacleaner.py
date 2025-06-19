@@ -8,12 +8,14 @@ from sklearn.preprocessing import OneHotEncoder
 class DataCleaner:
 
     def __init__(self):
-        self.dataset = pd.read_csv("realtor-data.csv", nrows=100000)
-        self.dataset = self.dataset[self.dataset["price"] < 2000000]
-        self.dataset.pop("prev_sold_date")
-        self.dataset.pop("status")
-        self.dataset.pop("brokered_by")
-        self.dataset.pop("street")
+        self.dataset = pd.read_csv("realtor-data.csv", nrows=500000)
+        self.dataset = self.dataset[self.dataset["price"] < 1000000]
+        self.dataset.drop(columns=["brokered_by", "status", "street", "prev_sold_date"], inplace=True)
+        self.dataset["price_per_sqft"] = self.dataset["price"] / self.dataset["house_size"]
+
+        q_low = self.dataset["price_per_sqft"].quantile(0.01)
+        q_hi = self.dataset["price_per_sqft"].quantile(0.99)
+        self.dataset = self.dataset[(self.dataset["price_per_sqft"] > q_low) & (self.dataset["price_per_sqft"] < q_hi)]
         self.X = self.dataset.drop("price", axis=1)
         self.y = self.dataset["price"]
         mask = ~np.isnan(self.y)
@@ -30,11 +32,8 @@ class DataCleaner:
         col = [i for i in range(self.X.shape[1]) if i not in [3, 4]]
         imputer.fit(self.X.iloc[:, col])
         self.X.iloc[:, col] = imputer.transform(self.X.iloc[:, col])
-        print("Ima li još NaN vrijednosti:", self.X.isna().sum().sum())
 
     def encod_data(self, *columns):
-        print("Kolone sa NaN vrijednostima:")
-        print(self.X.columns[self.X.isna().any()])
         ct = ColumnTransformer(transformers=[("encode", OneHotEncoder(), list(columns))], remainder="passthrough")
         self.X = ct.fit_transform(self.X)
         return self.X
