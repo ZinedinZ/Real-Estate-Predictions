@@ -17,7 +17,7 @@ test = pd.DataFrame([{
             "city": "Adjuntas",
             "state": "Puerto Rico",
             "zip_code": 601.0,
-            "hose_size": 920.0
+            "house_size": 920.0
 
 }])
 dc = DataCleaner()
