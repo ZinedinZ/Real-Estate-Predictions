@@ -7,59 +7,83 @@
 </head>
 <img src="static/logo.jpeg" width="1960" height="200" alt="">
 
-<div class="d-flex flex-column align-items-center">
-  <div class="mt-4 mb-4">
-      <label for="exampleInputEmail1" class="form-label"><strong>State</strong></label>
-      <input type="state" class="form-control" id="exampleInputEmail1" aria-describedby="state">
+    <form action="/" method="POST">
+    <div class="d-flex flex-column align-items-center">
+      <div class="mt-4 mb-4">
+          <label class="form-label"><strong>State</strong></label>
+          <input type="state" class="form-control" name="state">
+        </div>
+
+      <div class="mb-3">
+          <label class="form-label"><strong>City</strong></label>
+          <input type="city" class="form-control" name="city" >
+        </div>
+
+      <div class="mb-3">
+          <label class="form-label"><strong>Zip Code</strong></label>
+          <input type="zip_code" class="form-control" name="zip_code">
+        </div>
+
+      <div class="mb-3">
+          <label class="form-label"><strong>House Size</strong>(m²)</label>
+          <input type="house_size" class="form-control" name="house_size" >
+        </div>
+
+      <div class="mb-3">
+        <label class="form-label"><strong>Land Size</strong>(m²)</label>
+          <input type="LandSize" class="form-control" name="land_size" >
+        </div>
+
+      <div class="col-md-1">
+          <label class="form-label"><strong>Bad</strong></label>
+          <select class="form-select" name="bad">
+            <option selected>Choose...</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+      <div class="col-md-1 mt-3">
+          <label class="form-label"><strong>Bath</strong></label>
+          <select class="form-select" name="bath">
+            <option selected>Choose...</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+          </select>
+        </div>
+
+        <button style="high" type="" class="btn btn-success mt-4">Predict</button>
+      </div>
     </div>
+    </form>
 
-  <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label"><strong>City</strong></label>
-      <input type="city" class="form-control" id="exampleInputEmail2" aria-describedby="city">
-    </div>
-
-  <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label"><strong>Zip Code</strong></label>
-      <input type="zip_code" class="form-control" id="exampleInputEmail3" aria-describedby="zip_code">
-    </div>
-
-  <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label"><strong>House Size</strong>(m²)</label>
-      <input type="house_size" class="form-control" id="exampleInputEmail4" aria-describedby="housesize">
-    </div>
-
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label"><strong>Land Size</strong>(m²)</label>
-      <input type="LandSize" class="form-control" id="exampleInputEmail5" aria-describedby="LandSize">
-    </div>
-
-  <div class="col-md-1">
-      <label for="inputState" class="form-label"><strong>Bad</strong></label>
-      <select id="inputState" class="form-select">
-        <option selected>Choose...</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </select>
-    </div>
-  <div class="col-md-1 mt-3">
-      <label for="inputState" class="form-label"><strong>Bath</strong></label>
-      <select id="inputState2" class="form-select">
-        <option selected>Choose...</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-      </select>
-    </div>
+{% if data|length > 6 %}
+<table class="table table-striped-columns">
+    <thead>
+    <tr>
+      <th scope="Name">Name</th>
+      <th scope="Value">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>State</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>City</td>
+      <td></td>
+    </tr>
+</table>
+{{data}}
+{% endif %}
 
 
-    <button style="high" type="button" class="btn btn-success mt-4">Predict</button>
-
-   </div>
 <body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>

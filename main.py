@@ -2,13 +2,24 @@ from datacleaner import DataCleaner
 from Datatrainer import Datatrainer
 from userinterface import Userinterface
 import pandas as pd
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
     return render_template("home.html")
+
+@app.route("/", methods=["POST"])
+def predict():
+    answers = []
+    data = ["state", "city", "zip_code", "house_size", "land_size", "bad", "bath"]
+    for i in data:
+        i = request.form[i]
+        if i:
+            answers.append(i)
+        print(answers)
+    return render_template("home.html", data=answers)
 
 test = pd.DataFrame([{
             "bad": 3.0,
