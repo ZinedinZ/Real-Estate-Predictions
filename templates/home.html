@@ -71,16 +71,18 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>State</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>City</td>
-      <td></td>
-    </tr>
+  {{data}}
+  {% set headers = ["State", "City", "Zip Code", "House Size", "Land Size", "Bad", "Bath"] %}
+
+      {% for i in range(headers | length) %}
+        <tr>
+          <th>{{ headers[i] }}</th>
+          <td>{{ data[i] }}</td>
+        </tr>
+      {% endfor %}
+
 </table>
-{{data}}
+
 {% endif %}
 
 

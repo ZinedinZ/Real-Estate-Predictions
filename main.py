@@ -1,6 +1,5 @@
 from datacleaner import DataCleaner
 from Datatrainer import Datatrainer
-from userinterface import Userinterface
 import pandas as pd
 from flask import Flask, render_template, url_for, request
 
