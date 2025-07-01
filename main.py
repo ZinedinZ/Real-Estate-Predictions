@@ -4,7 +4,7 @@ import pandas as pd
 from flask import Flask, render_template, url_for, request
 
 app = Flask(__name__)
-
+dt = Datatrainer()
 @app.route("/")
 def home():
     return render_template("home.html")
@@ -17,22 +17,24 @@ def predict():
         i = request.form[i]
         if i:
             answers.append(i)
-        print(answers)
+    user_data = create_dataframe(answers)
+    price = dt.predictor(user_data)
+    answers += price
     return render_template("home.html", data=answers)
 
-test = pd.DataFrame([{
-            "bad": 3.0,
-            "Bath":2.0,
-            "acre_lot":0.12,
-            "city": "Adjuntas",
-            "state": "Puerto Rico",
-            "zip_code": 601.0,
-            "house_size": 920.0
+def create_dataframe(data):
+        test = pd.DataFrame([{
+            "bad": data[0],
+            "Bath": data[1],
+            "acre_lot": data[2],
+            "city": data[3],
+            "state": data[4],
+            "zip_code": data[5],
+            "house_size": data[6]
+        }])
+        return test
 
-}])
 dc = DataCleaner()
-dt = Datatrainer()
-dt.predictor(test)
 
 if __name__ == "__main__":
     app.run(debug=True)

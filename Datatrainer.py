@@ -23,4 +23,4 @@ class Datatrainer:
         regressor = Datatrainer().trainer()
         encoded_dataset = self.dc.encod_data(dataset, "state", "city")
         dataset_pred = regressor.predict(encoded_dataset)
-        return print(f"{dataset_pred[0]:.2f}")
+        return f"{dataset_pred[0]:.2f}"

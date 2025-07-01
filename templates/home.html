@@ -7,8 +7,9 @@
 </head>
 <img src="static/logo.jpeg" width="1960" height="200" alt="">
 
+<div class="d-flex flex-row justify-content-between align-items-start" style="margin-left: 200px">
+
     <form action="/" method="POST">
-    <div class="d-flex flex-column align-items-center">
       <div class="mt-4 mb-4">
           <label class="form-label"><strong>State</strong></label>
           <input type="state" class="form-control" name="state">
@@ -58,33 +59,34 @@
         </div>
 
         <button style="high" type="" class="btn btn-success mt-4">Predict</button>
-      </div>
-    </div>
     </form>
 
-{% if data|length > 6 %}
-<table class="table table-striped-columns">
-    <thead>
-    <tr>
-      <th scope="Name">Name</th>
-      <th scope="Value">Value</th>
-    </tr>
-  </thead>
-  <tbody>
-  {{data}}
-  {% set headers = ["State", "City", "Zip Code", "House Size", "Land Size", "Bad", "Bath"] %}
+        {% if data|length > 6 %}
+        <table class="table table-bordered border-primary w-25">
+            <thead>
+            <tr>
+              <th scope="Name">Name</th>
+              <th scope="Value">Value</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% set headers = ["State", "City", "Zip Code", "House Size", "Land Size", "Bad", "Bath"] %}
 
-      {% for i in range(headers | length) %}
-        <tr>
-          <th>{{ headers[i] }}</th>
-          <td>{{ data[i] }}</td>
-        </tr>
-      {% endfor %}
+              {% for i in range(headers | length) %}
+                <tr>
+                  <th>{{ headers[i] }}</th>
+                  <td>{{ data[i] }}</td>
+                </tr>
+              {% endfor %}
+              <tr>
+                  <th class="table-success">Predicted Price</th>
+                  <td class="table-success">{{ data[7] }}</td>
+                </tr>
 
-</table>
+        </table>
 
-{% endif %}
-
+        {% endif %}
+</div>
 
 <body>
 
