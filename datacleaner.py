@@ -46,10 +46,16 @@ class DataCleaner:
         self.X.iloc[:, col] = imputer.transform(self.X.iloc[:, col])
 
 
-    def encod_data(self,X, *columns):
-        ct = ColumnTransformer(transformers=[("encode", OneHotEncoder(), list(columns))], remainder="passthrough")
-        X = ct.fit_transform(self.X)
-        return X
+    def fit_encoder(self):
+        self.ct = ColumnTransformer(
+            transformers=[("encode", OneHotEncoder(handle_unknown='ignore'), ["state", "city"])],
+            remainder="passthrough"
+        )
+        self.X = self.ct.fit_transform(self.X)
+        return self.X
+
+    def transform_encoder(self, X):
+        return self.ct.transform(X)
 
     def data_pipeline(self):
         self.filter_data()

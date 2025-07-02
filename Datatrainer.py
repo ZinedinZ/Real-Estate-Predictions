@@ -9,9 +9,10 @@ class Datatrainer:
     def __init__(self):
         self.dc = DataCleaner()
         self.dc.data_pipeline()
+        self.dc.fit_encoder()
         self.X = self.dc.X
         self.y = self.dc.y
-        self.X = self.dc.encod_data(self.X, "state", "city")
+        self.regressor = self.trainer()
 
     def trainer(self):
         X_train, X_test, y_train, y_test = train_test_split(self.X, self.y, train_size=0.8, random_state=42)
@@ -20,7 +21,10 @@ class Datatrainer:
         return regressor
 
     def predictor(self, dataset):
-        regressor = Datatrainer().trainer()
-        encoded_dataset = self.dc.encod_data(dataset, "state", "city")
-        dataset_pred = regressor.predict(encoded_dataset)
+        encoded_dataset = self.dc.transform_encoder(dataset)
+        print("ENCODED INPUT:\n", encoded_dataset)
+
+        dataset_pred = self.regressor.predict(encoded_dataset)
+        print("PREDICTION:", dataset_pred)
+
         return f"{dataset_pred[0]:.2f}"

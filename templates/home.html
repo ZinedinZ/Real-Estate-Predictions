@@ -70,7 +70,7 @@
             </tr>
           </thead>
           <tbody>
-          {% set headers = ["State", "City", "Zip Code", "House Size", "Land Size", "Bad", "Bath"] %}
+          {% set headers = ["State", "City", "Zip Code", "House Size(m²)", "Land Size(m²)", "Bad", "Bath"] %}
 
               {% for i in range(headers | length) %}
                 <tr>
@@ -79,7 +79,7 @@
                 </tr>
               {% endfor %}
               <tr>
-                  <th class="table-success">Predicted Price</th>
+                  <th class="table-success">Predicted Price($)</th>
                   <td class="table-success">{{ data[7] }}</td>
                 </tr>
 

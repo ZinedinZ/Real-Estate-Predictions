@@ -18,19 +18,23 @@ def predict():
         if i:
             answers.append(i)
     user_data = create_dataframe(answers)
+    print(answers)
     price = dt.predictor(user_data)
-    answers += price
+    print(price)
+    answers.append(price)
+    print(answers)
     return render_template("home.html", data=answers)
 
 def create_dataframe(data):
         test = pd.DataFrame([{
-            "bad": data[0],
-            "Bath": data[1],
-            "acre_lot": data[2],
-            "city": data[3],
-            "state": data[4],
-            "zip_code": data[5],
-            "house_size": data[6]
+            "bed": data[5],
+            "bath": data[6],
+            "acre_lot": float(data[4])/4046.85642,
+            "city": data[1],
+            "state": data[0],
+            "zip_code": data[2],
+            "house_size": float(data[3])/0.092903,
+            "price_per_sqft": 0
         }])
         return test
 
