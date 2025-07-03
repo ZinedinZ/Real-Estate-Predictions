@@ -22,11 +22,12 @@ class DataCleaner:
 
     def add_columns(self):
         self.dataset["price_per_sqft"] = self.dataset["price"] / self.dataset["house_size"]
-
+        pass
     def remove_outliers(self):
         q_low = self.dataset["price_per_sqft"].quantile(0.01)
         q_hi = self.dataset["price_per_sqft"].quantile(0.99)
-        self.dataset = self.dataset[(self.dataset["price_per_sqft"] > q_low) & (self.dataset["price_per_sqft"] < q_hi)]
+        self.dataset= self.dataset[(self.dataset["price_per_sqft"] > q_low) & (self.dataset["price_per_sqft"] < q_hi)]
+        self.dataset["price_per_sqft"] = self.dataset["price_per_sqft"].mean()
 
     def split_features(self):
         self.X = self.dataset.drop("price", axis=1)

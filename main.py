@@ -34,7 +34,8 @@ def create_dataframe(data):
             "state": data[0],
             "zip_code": data[2],
             "house_size": float(data[3])/0.092903,
-            "price_per_sqft": 0
+            "price_per_sqft":
+
         }])
         return test
 
