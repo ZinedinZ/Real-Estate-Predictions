@@ -36,8 +36,8 @@
         </div>
 
       <div class="col-md-1">
-          <label class="form-label"><strong>Bad</strong></label>
-          <select class="form-select" name="bad">
+          <label class="form-label"><strong>Bed</strong></label>
+          <select class="form-select" name="bed">
             <option selected>Choose...</option>
             <option>1</option>
             <option>2</option>
@@ -70,7 +70,7 @@
             </tr>
           </thead>
           <tbody>
-          {% set headers = ["State", "City", "Zip Code", "House Size(m²)", "Land Size(m²)", "Bad", "Bath"] %}
+          {% set headers = ["State", "City", "Zip Code", "House Size(m²)", "Land Size(m²)", "Bed", "Bath"] %}
 
               {% for i in range(headers | length) %}
                 <tr>
@@ -80,7 +80,7 @@
               {% endfor %}
               <tr>
                   <th class="table-success">Predicted Price($)</th>
-                  <td class="table-success">{{ data[7] }}</td>
+                  <td class="table-success">{{ data[7] }}$</td>
                 </tr>
 
         </table>

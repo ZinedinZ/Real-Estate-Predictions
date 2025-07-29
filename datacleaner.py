@@ -14,20 +14,11 @@ class DataCleaner:
 
 
     def filter_data(self):
-        self.dataset = pd.read_csv("realtor-data.csv", nrows=500000)
+        self.dataset = pd.read_csv("realtor-data.csv")
         self.dataset = self.dataset[self.dataset["price"] < 1000000]
 
     def drop_columns(self):
         self.dataset.drop(columns=["brokered_by", "status", "street", "prev_sold_date"], inplace=True)
-
-    def add_columns(self):
-        self.dataset["price_per_sqft"] = self.dataset["price"] / self.dataset["house_size"]
-        pass
-    def remove_outliers(self):
-        q_low = self.dataset["price_per_sqft"].quantile(0.01)
-        q_hi = self.dataset["price_per_sqft"].quantile(0.99)
-        self.dataset= self.dataset[(self.dataset["price_per_sqft"] > q_low) & (self.dataset["price_per_sqft"] < q_hi)]
-        self.dataset["price_per_sqft"] = self.dataset["price_per_sqft"].mean()
 
     def split_features(self):
         self.X = self.dataset.drop("price", axis=1)
@@ -61,7 +52,5 @@ class DataCleaner:
     def data_pipeline(self):
         self.filter_data()
         self.drop_columns()
-        self.add_columns()
-        self.remove_outliers()
         self.split_features()
         self.impute_missing()
